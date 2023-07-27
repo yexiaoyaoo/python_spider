@@ -17,20 +17,13 @@ HTML标签是用于定义网页内容的元素，它们通常由一个开始标�
 - <b>：这是文档的加粗，它用于表示一个需要加粗显示的部分内容。浏览器通常会把它显示为粗体字。
 - <br>：这是文档的换行符，它用于在文本中插入一个单独的换行。它没有结束标签。
 ```
-以上就是一些常见的HTML标签及其用法，你可以参考[HTML Reference - W3Schools](https://www.w3schools.com/TAGs/)来了解更多的标签及其属性。你也可以使用[HTML Cheat Sheet - Learn web development | MDN](https://developer.mozilla.org/en-US/docs/Learn/HTML/Cheatsheet)来快速查找一些常用的代码片段。
 
-源: 与必应的对话， 2023/7/27
-(1) HTML Reference - W3Schools. https://www.w3schools.com/TAGs/.
-(2) HTML Cheat Sheet - Learn web development | MDN - MDN Web Docs. https://developer.mozilla.org/en-US/docs/Learn/HTML/Cheatsheet.
-(3) HTML Tags - W3Schools. https://www.w3schools.in/html/tags.
-(4) HTML Tags - javatpoint. https://www.javatpoint.com/html-tags.
-(5) Commonly Used HTML Tags with Examples - DataFlair. https://data-flair.training/blogs/html-tags-with-examples/.
 
 元素是HTML文档中的基本组成部分，它们用于定义网页内容的类型和结构。元素通常由一个开始标签和一个结束标签组成，以及一些属性和内容。例如，<p>元素用于表示一个段落，它的开始标签是<p>，结束标签是</p>，内容是放在两个标签之间的文本。属性是用于提供元素的额外信息或功能的，它们放在开始标签中，由一个属性名和一个属性值组成，属性值用引号括起来。例如，<a>元素用于表示一个链接，它有一个href属性，用于指定链接的目标地址，属性值是一个URL。元素可以嵌套在其他元素中，形成一个树状的结构。例如，<ul>元素用于表示一个无序列表，它可以包含多个<li>元素，每个<li>元素表示列表中的一个项目。
 
 
 一个完整的HTML文档通常由以下几个部分组成：
-
+```
 - <!DOCTYPE html>声明：这是一个必须放在文档最前面的声明，它告诉浏览器这是一个HTML5文档。
 - <html>元素：这是文档的根元素，它包含了整个文档的内容。
 - <head>元素：这是文档的头部，它包含了一些关于文档的元信息，比如<title>元素、<meta>元素、<link>元素等。
@@ -51,12 +44,7 @@ HTML标签是用于定义网页内容的元素，它们通常由一个开始标�
 </html>
 ```
 
-你可以参考[HTML Basic Examples - W3Schools](https://www.w3schools.com/html/html_basic.asp)来了解更多的HTML文档示例。你也可以使用[HTML Examples - W3Schools](https://www.w3schools.com/html/html_examples.asp)来查看一些常用的HTML功能和效果。
 
-源: 与必应的对话， 2023/7/27
-(1) HTML Examples - W3Schools. https://www.w3schools.com/html/html_examples.asp.
-(2) HTML Basic Examples - W3Schools. https://www.w3schools.com/html/html_basic.asp.
-(3) Introduction to HTML - W3Schools. https://www.w3schools.com/html/html_intro.asp.
 
 
 
@@ -106,24 +94,24 @@ HTML标签是用于定义网页内容的元素，它们通常由一个开始标�
 
 这里的class有什么用
 class属性是HTML中的一个全局属性，它用于指定一个或多个类名给一个元素。类名可以用于CSS和JavaScript来选择和访问特定的元素，通过类选择器或者函数，比如DOM方法document.getElementsByClassName。class属性可以用于任何HTML元素。例如，这个例子展示了如何给一个<h1>元素添加一个类名intro：
-
+```
 <h1 class="intro">标题1</h1>
-
+```
 然后，你可以在CSS中使用.intro选择器来给这个元素添加样式，比如改变颜色：
-
+```
 <style>
   h1.intro {
     color: blue;
   }
 </style>
-
+```
 你也可以在JavaScript中使用getElementsByClassName方法来获取这个元素的引用，比如改变内容：
-
+```
 <script>
   var h1 = document.getElementsByClassName("intro")[0];
   h1.innerHTML = "新的标题";
 </script>
-
+```
 你可以参考[HTML Classes - The Class Attribute - W3Schools](https://www.w3schools.com/html/html_classes.asp)或[class - HTML: HyperText Markup Language | MDN - MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class)来了解更多关于class属性的知识。
 
 源: 与必应的对话， 2023/7/27
@@ -133,7 +121,7 @@ class属性是HTML中的一个全局属性，它用于指定一个或多个类�
 
 <div>：这是文档的分区，它用于表示一个通用的容器，可以包含其他任何元素。它通常与CSS一起使用来布局和样式化网页不太理解
 <div>元素是HTML中的一个标签，它定义了一个分区或一个区域，用于在文档中划分不同的内容或功能。它没有任何固定的含义或表现，只是一个通用的容器，可以包含其他任何元素。它通常与CSS一起使用来布局和样式化网页，比如给<div>元素添加类名或id属性，然后在CSS中使用类选择器或id选择器来给它们添加样式。它也可以被JavaScript使用来访问和操作具有特定类名或id属性的<div>元素。例如，这个例子展示了如何给一个<div>元素添加一个类名myDiv，并在CSS中给它添加样式：
-
+```
 <style>
   .myDiv {
     border: 5px outset red;
@@ -146,7 +134,7 @@ class属性是HTML中的一个全局属性，它用于指定一个或多个类�
   <h2>这是一个div元素中的标题</h2>
   <p>这是一个div元素中的段落。</p>
 </div>
-
+```
 你可以参考[HTML div tag - W3Schools](https://www.w3schools.com/tags/tag_div.asp)或[<div>: The Content Division element - MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div)来了解更多关于<div>元素的知识。
 
 源: 与必应的对话， 2023/7/27
@@ -164,7 +152,7 @@ class和id这两个属性都是用于给HTML元素添加标识符的，它们可
 - class属性的值不区分大小写，id属性的值区分大小写。
 
 例如，这个例子展示了如何给一个<p>元素添加一个类名important和一个id名note，并在CSS中给它们添加样式：
-
+```
 <style>
   .important {
     color: red;
@@ -176,7 +164,7 @@ class和id这两个属性都是用于给HTML元素添加标识符的，它们可
 </style>
 
 <p class="important" id="note">这是一个重要的提示。</p>
-
+```
 你可以参考[Difference between id and class Attributes in HTML - GeeksforGeeks](https://www.geeksforgeeks.org/difference-between-id-and-class-attributes-in-html/)或[html - What's the difference between an id and a class? - Stack Overflow](https://stackoverflow.com/questions/544010/whats-the-difference-between-an-id-and-a-class)来了解更多关于class和id属性的知识。
 
 源: 与必应的对话， 2023/7/27
@@ -187,7 +175,7 @@ class和id这两个属性都是用于给HTML元素添加标识符的，它们可
 
 啥叫标识符，容器
 标识符是用于给HTML元素命名的，它可以用于CSS或JavaScript来选择和访问特定的元素，比如使用类选择器或id选择器。标识符有两种类型：class和id。class标识符可以用于多个元素，表示它们属于同一个类别，有相同的样式或功能。id标识符只能用于一个元素，表示它是唯一的，有特殊的样式或功能。例如，这个例子展示了如何给一个<p>元素添加一个类名important和一个id名note，并在CSS中给它们添加样式：
-
+```
 <style>
   .important {
     color: red;
@@ -199,11 +187,11 @@ class和id这两个属性都是用于给HTML元素添加标识符的，它们可
 </style>
 
 <p class="important" id="note">这是一个重要的提示。</p>
-
+```
 你可以参考[Difference between id and class Attributes in HTML - GeeksforGeeks](https://www.geeksforgeeks.org/difference-between-id-and-class-attributes-in-html/)或[html - What's the difference between an id and a class? - Stack Overflow](https://stackoverflow.com/questions/544010/whats-the-difference-between-an-id-and-a-class)来了解更多关于class和id标识符的知识。
 
 容器是用于在HTML文档中划分不同的内容或功能的区域，它通常是一个<div>元素，可以包含其他任何元素。容器可以用于布局和样式化网页，比如给容器添加类名或id属性，然后在CSS中使用类选择器或id选择器来给它们添加样式。容器也可以被JavaScript使用来访问和操作具有特定类名或id属性的容器。例如，这个例子展示了如何给一个<div>元素添加一个类名myDiv，并在CSS中给它添加样式：
-
+```
 <style>
   .myDiv {
     border: 5px outset red;
@@ -216,7 +204,7 @@ class和id这两个属性都是用于给HTML元素添加标识符的，它们可
   <h2>这是一个div元素中的标题</h2>
   <p>这是一个div元素中的段落。</p>
 </div>
-
+```
 你可以参考[W3.CSS Containers - W3Schools](https://www.w3schools.com/w3css/w3css_containers.asp)或[HTML div tag - W3Schools](https://www.w3schools.com/tags/tag_div.asp)来了解更多关于容器的知识。
 
 源: 与必应的对话， 2023/7/27
@@ -224,10 +212,11 @@ class和id这两个属性都是用于给HTML元素添加标识符的，它们可
 (2) id - HTML: HyperText Markup Language | MDN - MDN Web Docs. https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/id.
 (3) standards - HTML - Container id or class - Stack Overflow. https://stackoverflow.com/questions/7093679/html-container-id-or-class.
 
-
+```
 <li><a href="/book/3441/874874.html" style="color:Gray;">第一章 绯红</a></li>  li什么意思
+```
 <li>是HTML中的一个标签，它定义了一个列表项。它必须包含在一个父元素中：一个有序列表(<ol>)，一个无序列表(<ul>)，或一个菜单(<menu>)。在菜单和无序列表中，列表项通常会显示为带有圆点的项目符号。在有序列表中，列表项通常会显示为带有数字或字母的编号。例如，这个例子展示了如何创建一个有序列表和一个无序列表：
-
+```
 <ol>
   <li>咖啡</li>
   <li>茶</li>
@@ -239,12 +228,5 @@ class和id这两个属性都是用于给HTML元素添加标识符的，它们可
   <li>茶</li>
   <li>牛奶</li>
 </ul>
+```
 
-你可以参考[HTML li tag - W3Schools](https://www.w3schools.com/TAGS/tag_li.asp)或[<li>: The List Item element - HTML: HyperText Markup Language | MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/li)来了解更多关于<li>标签的知识。
-
-源: 与必应的对话， 2023/7/27
-(1) HTML li tag - W3Schools. https://www.w3schools.com/TAGS/tag_li.asp.
-(2) <li>: The List Item element - HTML: HyperText Markup Language | MDN. https://developer.mozilla.org/en-US/docs/Web/HTML/Element/li.
-(3) HTML <li> Tag - GeeksforGeeks. https://www.geeksforgeeks.org/html-li-tag/.
-(4) HTML li Tag-Learn HTML | W3Docs. https://www.w3docs.com/learn-html/html-li-tag.html.
-(5) <li> - HTML: Linguagem de Marcação de Hipertexto | MDN. https://developer.mozilla.org/pt-BR/docs/Web/HTML/Element/li.
