@@ -1,0 +1,67 @@
+import requests
+from bs4 import BeautifulSoup
+from tqdm import tqdm
+import shelve # 导入shelve模块
+
+server="https://www.biquge2023.com"
+book_name="诡秘之主.txt"
+
+def get_content(target):
+    if requests.get(url=target):
+        req = requests.get(url=target)
+        req.encoding = "utf-8"
+        bs = BeautifulSoup(req.text, "lxml")
+        texts = bs.find("div", id="content").text.split()
+    return texts
+
+def get_chapter_url(target):
+    page = requests.get(url=target)
+    bs = BeautifulSoup(page.text, 'lxml')
+    chapters = bs.find_all('ul', class_='section-list fix')
+    chapters = chapters[-1]  # 索引从-1开始，所以最后一个是-1
+    chapters = chapters.find_all('a')
+
+    for chapter in tqdm(chapters):
+        url = chapter.get("href")
+        #print(f"{chapter.string}")
+
+        url_first_page = server + url
+        next_page = requests.get(url_first_page)
+        bs = BeautifulSoup(next_page.text, 'lxml')
+        next_page_ = bs.find('div', class_='section-opt m-bottom-opt')
+        url_next_page = next_page_.find('a', id='next_url').get("href")
+        targets = [server + url, server + url_next_page]
+        for index,item in enumerate(targets):
+            texts=get_content(item)
+            with open(book_name,'a',encoding="utf-8") as f:
+                if index==0:
+                    f.write(chapter.string)
+                    f.write("\n")
+                f.write("\n".join(texts))
+                f.write("\n")
+            progress['page'] = index # 更新页码
+
+if __name__ == '__main__':
+    progress = {} # 定义一个空字典用来存储进度
+    try: # 尝试打开进度文件
+        with shelve.open('progress.db') as db:
+            if db: # 如果文件不为空
+                progress = db['progress'] # 读取进度
+                print(f"上次爬取到第{progress['chapter']}章第{progress['page']}页")
+            else: # 如果文件为空
+                print("没有找到上次的进度，从头开始爬取")
+    except: # 如果文件不存在或打开失败
+        print("没有找到上次的进度，从头开始爬取")
+
+    for i in range(1, 74):
+        if i < progress.get('chapter', 1): # 如果当前章节小于上次爬取的章节，跳过
+            continue
+        get_chapter_url(f"https://www.biquge2023.com/book/3441/index_{i}.html")
+        progress['chapter'] = i # 更新进度
+        progress['page'] = 1 # 重置页码
+        with shelve.open('progress.db') as db: # 保存进度
+            db['progress'] = progress
+
+    with shelve.open('progress.db') as db: # 爬取完成后，关闭并删除文件
+        db.close()
+        db.clear()
