@@ -1,0 +1,12 @@
+熟悉了requests中get方法和Beautiful中的find，find_all，get方法
+
+了解了html文档中网页元素大致的结构与它们分别代表的种类
+
+for循环内部如果需要按不同的次序打印，比如奇偶次打印不同内容时可以使用enumerate函数结合if分别打印
+
+tqdm可以用在for循环，这样更易知道循序的进度条
+
+网页有多处标签类一致，而我想取出的是第二处的，但使用Beautiful的find方法时永远得到的是none，
+才知道find只取距离开头最近的那一处，于是改用find_all方法，结合索引成功取得
+    
+with as 写入file
