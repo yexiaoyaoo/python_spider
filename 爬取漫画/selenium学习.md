@@ -183,3 +183,80 @@ Enrolling in the Transcendent Academy
 Mr. Baek
 The Crown Princess Scandal
 ```
+
+如果你想要利用selenium爬取一个稍微复杂一点的动态网页漫画的例子，你可以使用以下相关的功能和代码：
+
+- 使用selenium的webdriver对象来模拟浏览器的行为，如打开网页，输入文本，点击按钮等。
+- 使用selenium的wait对象来设置等待时间，以便在元素加载之前等待一定时间，或者在元素满足某些条件之前等待。
+- 使用selenium的expected_conditions对象来设置等待的条件，如元素可见，元素可点击，元素存在等。
+- 使用selenium的find_element或者find_elements方法来查找页面上的漫画章节元素，并获取其href属性，即章节的链接。
+- 使用selenium的get或者click方法来打开每个章节的链接，并等待漫画内容元素可见。
+- 使用selenium的find_element或者find_elements方法来查找页面上的漫画内容元素，如标题，作者，图片等。
+- 使用selenium的get_attribute或者text方法来获取漫画内容元素的属性或者文本内容，如src, text等。
+- 使用Python的文件操作或者requests库或者urllib库来保存漫画内容元素到本地文件，如html, txt, jpg等。
+
+例如，如果你想要爬取一个动态渲染的网页漫画的所有章节，并保存到本地文件夹中，你可以使用以下代码：
+
+```python
+# 导入selenium的webdriver模块
+from selenium import webdriver
+# 导入selenium的wait模块
+from selenium.webdriver.support.ui import WebDriverWait
+# 导入selenium的expected_conditions模块
+from selenium.webdriver.support import expected_conditions as EC
+# 导入selenium的By模块
+from selenium.webdriver.common.by import By
+# 导入requests库
+import requests
+# 导入os库
+import os
+
+# 创建一个Chrome浏览器的实例
+driver = webdriver.Chrome()
+# 设置最大等待时间为10秒
+wait = WebDriverWait(driver, 10)
+# 打开一个动态渲染的网页漫画
+driver.get("https://www.webtoons.com/en/fantasy/tower-of-god/list?title_no=95")
+# 等待网页的漫画章节列表元素可见
+chapters = wait.until(EC.visibility_of_all_elements_located((By.XPATH, "//ul[@id='_listUl']/li")))
+# 创建一个本地文件夹来保存漫画信息和图片
+os.mkdir("tower-of-god")
+# 遍历每个漫画章节元素
+for chapter in chapters:
+    # 使用xpath定位器找到漫画章节的标题元素，并获取其文本内容
+    title = chapter.find_element_by_xpath(".//span[@class='subj']")
+    title_text = title.text
+
+    # 使用xpath定位器找到漫画章节的链接元素，并获取其href属性
+    link = chapter.find_element_by_xpath(".//a")
+    link_href = link.get_attribute("href")
+
+    # 打印漫画章节的信息
+    print(f"Title: {title_text}")
+    print(f"Link: {link_href}")
+    print()
+
+    # 保存漫画章节的信息到本地文件夹中
+    with open(f"tower-of-god/{title_text}.txt", "w") as f:
+        f.write(f"Title: {title_text}\n")
+        f.write(f"Link: {link_href}\n")
+
+    # 打开每个章节的链接，并等待漫画内容元素可见
+    driver.get(link_href)
+    content = wait.until(EC.visibility_of_element_located((By.ID, "_imageList")))
+
+    # 使用xpath定位器找到漫画内容中的图片元素，并获取其src属性
+    images = content.find_elements_by_xpath(".//img")
+    image_srcs = [image.get_attribute("src") for image in images]
+
+    # 下载每个图片到本地文件夹中，并命名为序号.jpg
+    for i, src in enumerate(image_srcs):
+        image_data = requests.get(src).content
+        with open(f"tower-of-god/{title_text}_{i+1}.jpg", "wb") as f:
+            f.write(image_data)
+
+# 关闭浏览器并结束会话
+driver.quit()
+```
+
+
